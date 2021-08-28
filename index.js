@@ -1,14 +1,14 @@
 import express,{request,response} from "express";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv"
-//import cors from "cors";
+import cors from "cors";
 
 
 const app=express();
 dotenv.config();
 
 app.use(express.json());
-//app.use(cors())
+app.use(cors())
 
 
 const MONGO_URL=process.env.MONGO_URL
@@ -43,7 +43,7 @@ app.post("/students",async(request,response)=>{
     const result=await client
       .db("student-mentor")
       .collection("students")
-      .insertMany(userData)
+      .insertOne(userData)
     response.send(result)
   })
 
