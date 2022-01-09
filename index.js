@@ -29,40 +29,6 @@ async function createConnection(){
 
 
 
-app.post("/sendmail",async(request,response)=>{
-    const values=request.body;
-    const client=await createConnection()
-    
-    var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-              user: 'testerAtwork09@gmail.com',
-              pass: GMAIL_PASSWORD
-            }
-          });
-          
-          var mailOptions = {
-            from: 'testerAtwork09@gmail.com',
-            to: "kaustubhmagdum@gmail.com",
-            subject: 'contact page says',
-            text: `${values.firstName} ${values.lastName} says ${values.message}
-             can contact me on ${values.emailId}`
-          };
-
-          transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-                console.log(error);
-                 response.send({success:false,result:info.response})
-            } else {
-              console.log('Email sent: ' + info.response);
-                response.send({success:true,result:info.response})
-            }
-          });
-    
-    
-    
-  })
-
 
 
 
